@@ -115,6 +115,11 @@ function randomize(){
             items.splice(2, 0, fixedItem);
         }
 
+        // 2nd run → force J to 9th place
+        else if(runCount === 2){
+            items.splice(8, 0, fixedItem);
+        }
+
         // 3rd run → force J to 2nd place
         else if(runCount === 3){
             items.splice(1, 0, fixedItem);
