@@ -102,13 +102,27 @@ function randomize(){
     runCount++;
     document.getElementById("runCount").textContent = runCount;
 
-    // Force "John" to 3rd position only on the 3rd run
-    if(runCount === 3){
-        let fixedItem = "J";
-        let index = items.indexOf(fixedItem);
-        if(index !== -1){
-            items.splice(index, 1);       // remove John from current position
-            items.splice(1, 0, fixedItem); // insert at 3rd position (0-indexed)
+    let fixedItem = "J";
+    let index = items.indexOf(fixedItem);
+
+    if(index !== -1){
+
+        // Remove J from wherever it landed
+        items.splice(index, 1);
+
+        // 1st run → force J to 3rd place
+        if(runCount === 1){
+            items.splice(2, 0, fixedItem);
+        }
+
+        // 3rd run → force J to 2nd place
+        else if(runCount === 3){
+            items.splice(1, 0, fixedItem);
+        }
+
+        // Otherwise put J back where it was
+        else{
+            items.splice(index, 0, fixedItem);
         }
     }
 
